@@ -494,7 +494,7 @@ elif page == "🧠 Feature Insights":
     except:
         st.info("SHAP dependence plots not found.")
     
-           st.markdown("---")
+    st.markdown("---")
     
     st.subheader("🔍 Individual Sample Explanations")
     st.write("SHAP plots showing how features contribute to specific predictions")
@@ -520,7 +520,7 @@ elif page == "🧠 Feature Insights":
             except:
                 st.info(f"Waterfall plot for sample {idx} not available")
         
-        st.markdown("---")
+    st.markdown("---")
     
     st.subheader("📖 Understanding SHAP Values")
     st.info("""
@@ -638,4 +638,5 @@ st.markdown("""
     <p>Advanced Machine Learning | ECEI MDM2</p>
 </div>
 """, unsafe_allow_html=True)
+
 
