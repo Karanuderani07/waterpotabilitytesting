@@ -494,23 +494,33 @@ elif page == "🧠 Feature Insights":
     except:
         st.info("SHAP dependence plots not found.")
     
-    st.markdown("---")
+           st.markdown("---")
     
     st.subheader("🔍 Individual Sample Explanations")
-    st.write("SHAP force plots showing how features contribute to specific predictions")
+    st.write("SHAP plots showing how features contribute to specific predictions")
     
-    sample_cols = st.columns(3)
+    # Try both force plots and waterfall plots
     force_plot_indices = [0, 10, 50]
     
-    for col, idx in zip(sample_cols, force_plot_indices):
-        with col:
+    for idx in force_plot_indices:
+        st.markdown(f"**Sample {idx}**")
+        col1, col2 = st.columns(2)
+        
+        with col1:
             try:
                 img = Image.open(f'shap_force_{idx}.png')
-                st.image(img, use_column_width=True)
+                st.image(img, use_column_width=True, caption=f"Force Plot - Sample {idx}")
             except:
-                st.info(f"Sample {idx} not available")
-    
-    st.markdown("---")
+                st.info(f"Force plot for sample {idx} not available")
+        
+        with col2:
+            try:
+                img = Image.open(f'shap_waterfall_{idx}.png')
+                st.image(img, use_column_width=True, caption=f"Waterfall Plot - Sample {idx}")
+            except:
+                st.info(f"Waterfall plot for sample {idx} not available")
+        
+        st.markdown("---")
     
     st.subheader("📖 Understanding SHAP Values")
     st.info("""
@@ -628,3 +638,4 @@ st.markdown("""
     <p>Advanced Machine Learning | ECEI MDM2</p>
 </div>
 """, unsafe_allow_html=True)
+
